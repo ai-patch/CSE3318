@@ -1,0 +1,10 @@
+low 0 high 1 i 0 j 1 a[0]=-99999999 b[1]=2 a[1]=1
+low 1 high 1 i 1 j 0 b[0]=-99999999 a[1]=1 b[1]=2
+a[1]=1 has rank 1
+low 0 high 2 i 1 j 1 a[1]=1 b[1]=2 a[2]=3
+b[1]=2 has rank 2
+low 3 high 5 i 4 j 4 a[4]=7 b[4]=9 a[5]=9
+low 5 high 5 i 5 j 3 b[3]=8 a[5]=9 b[4]=9
+a[5]=9 has rank 8
+low 5 high 5 i 5 j 5 a[5]=9 b[5]=10 a[6]=99999999
+b[5]=10 has rank 10

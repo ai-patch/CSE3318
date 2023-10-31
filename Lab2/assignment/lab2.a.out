@@ -1,0 +1,4 @@
+low 0 mid 3 high 6 failed
+low 0 mid 1 high 2 passed
+low 2 mid 2 high 2 failed
+Maximum repeats is 1
