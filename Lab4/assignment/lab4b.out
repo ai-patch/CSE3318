@@ -1,0 +1,113 @@
+Enqueued 1
+Enqueued 2
+Enqueued 3
+Enqueued 4
+Enqueued 5
+Enqueued 6
+Enqueued 7
+Enqueued 8
+Enqueued 9
+Enqueued 10
+Enqueued 11
+Enqueued 12
+Enqueued 13
+Enqueued 14
+Enqueued 15
+Enqueued 16
+Enqueued 17
+Enqueued 18
+Enqueued 19
+Enqueued 20
+Enqueued 21
+Enqueued 22
+Enqueued 23
+Enqueued 24
+Enqueued 25
+Dequeued 1
+Dequeued 2
+Dequeued 3
+Dequeued 4
+Dequeued 5
+Dequeued 6
+Dequeued 7
+Dequeued 8
+Dequeued 9
+Dequeued 10
+Dequeued 11
+Dequeued 12
+Dequeued 13
+Dequeued 14
+Dequeued 15
+Dequeued 16
+average length 21.000000
+minimum length 17
+maximum length 25
+Enqueued 15
+Enqueued 16
+Enqueued 17
+Enqueued 18
+Enqueued 19
+Enqueued 20
+Enqueued 21
+Enqueued 22
+Enqueued 23
+Enqueued 24
+Enqueued 25
+Dequeued 17
+Dequeued 18
+Dequeued 19
+Dequeued 20
+Dequeued 21
+Dequeued 22
+Dequeued 23
+Dequeued 24
+Dequeued 25
+Dequeued 15
+Dequeued 16
+average length 21.000000
+minimum length 17
+maximum length 25
+Enqueued 7
+Enqueued 8
+Enqueued 9
+Enqueued 10
+Enqueued 11
+Enqueued 12
+Enqueued 13
+Enqueued 14
+Enqueued 15
+Enqueued 16
+Dequeued 17
+Dequeued 18
+Dequeued 19
+Dequeued 20
+Dequeued 21
+Dequeued 22
+Dequeued 23
+Dequeued 24
+Dequeued 25
+average length 11.500000
+minimum length 7
+maximum length 16
+Dequeued 7
+Dequeued 8
+Dequeued 9
+Dequeued 10
+Dequeued 11
+average length 14.000000
+minimum length 12
+maximum length 16
+Dequeued 12
+Dequeued 13
+Dequeued 14
+average length 15.500000
+minimum length 15
+maximum length 16
+Dequeued 15
+Dequeued 16
+Can't dequeue from an empty queue
+Can't compute average for an empty queue
+Can't compute minimum for an empty queue
+Can't compute maximum for an empty queue
+0
+In Stack available nodes 25 Out Stack available nodes 25
