@@ -44,42 +44,146 @@ void initQueue(struct Queue* queue) {
 
 // Function to push a value onto the stack
 void push(struct Stack* stack, int value, int length) {
-    // Implement this function
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = value;
+    newNode->length = length;
+    newNode->next = stack->top;
+
+    stack->top = newNode;
+    if (length < stack->minLen) {
+        stack->minLen = length;
+    }
+    if (length > stack->maxLen) {
+        stack->maxLen = length;
+    }
 }
 
 // Function to pop a value from the stack
 struct Node* pop(struct Stack* stack) {
-    // Implement this function
+    if (stack->top == NULL) {
+        return NULL; // Stack is empty
+    }
+
+    struct Node* temp = stack->top;
+    stack->top = stack->top->next;
+    return temp;
 }
 
 // Function to enqueue a message
 void enqueue(struct Queue* queue, int length) {
-    // Implement this function
+    int value; // You need to decide how to get the value to enqueue
+    push(queue->inStack, value, length);
+    queue->totalLength += length;
+    queue->numMessages++;
 }
 
 // Function to dequeue a message
 struct Node* dequeue(struct Queue* queue) {
-    // Implement this function
+    if (queue->outStack->top == NULL) {
+        // If outStack is empty, transfer messages from inStack
+        while (queue->inStack->top != NULL) {
+            struct Node* temp = pop(queue->inStack);
+            push(queue->outStack, temp->data, temp->length);
+            free(temp);
+        }
+    }
+
+    if (queue->outStack->top == NULL) {
+        return NULL; // Queue is empty
+    }
+
+    struct Node* temp = pop(queue->outStack);
+    queue->totalLength -= temp->length;
+    queue->numMessages--;
+
+    return temp;
 }
 
 // Function to compute and print the average length of a message
 void computeAverage(struct Queue* queue) {
-    // Implement this function
+    if (queue->numMessages > 0) {
+        double average = (double)queue->totalLength / queue->numMessages;
+        printf("Average message length: %.2f\n", average);
+    } else {
+        printf("Error: Queue is empty\n");
+    }
 }
 
 // Function to determine and print the minimum message length
 void printMinLength(struct Queue* queue) {
-    // Implement this function
+    if (queue->numMessages > 0) {
+        printf("Minimum message length: %d\n", queue->outStack->minLen);
+    } else {
+        printf("Error: Queue is empty\n");
+    }
 }
 
 // Function to determine and print the maximum message length
 void printMaxLength(struct Queue* queue) {
-    // Implement this function
+    if (queue->numMessages > 0) {
+        printf("Maximum message length: %d\n", queue->outStack->maxLen);
+    } else {
+        printf("Error: Queue is empty\n");
+    }
 }
-
 int main() {
-    // Implement the main loop to process commands
-    // Remember to handle each command accordingly
+    struct Queue myQueue;
+    initQueue(&myQueue);
 
+    FILE *file = fopen("a.dat", "r");
+    if (file == NULL) {
+        perror("Error opening file");
+        return 1;
+    }
+
+    int command, value;
+
+    while (fscanf(file, "%d", &command) == 1) {
+        switch (command) {
+            case 0:
+                printf("Exiting program\n");
+                fclose(file);
+                return 0;
+
+            case 1:
+                if (fscanf(file, "%d", &value) == 1) {
+                    enqueue(&myQueue, value);
+                    printf("%d has been enqueued\n", value);
+                } else {
+                    printf("Invalid command format\n");
+                }
+                break;
+
+            case 2:
+                // Dequeue and print the length
+                {
+                    struct Node* node = dequeue(&myQueue);
+                    if (node != NULL) {
+                        printf("Dequeued length: %d\n", node->length);
+                        free(node);
+                    } else {
+                        printf("Error: Queue is empty\n");
+                    }
+                }
+                break;
+
+            case 3:
+                computeAverage(&myQueue);
+                break;
+
+            case 4:
+                printMinLength(&myQueue);
+                break;
+
+            case 5:
+                printMaxLength(&myQueue);
+                break;
+
+            default:
+                printf("Invalid command\n");
+        }
+    }
+
+    fclose(file);
     return 0;
 }
