@@ -16,7 +16,7 @@ struct Stack
     int maxLen;
 };
 
-struct Queue
+struct Queue 
 {
     struct Stack* inStack;
     struct Stack* outStack;
@@ -24,7 +24,7 @@ struct Queue
     int numMessages;
 };
 
-void initStack(struct Stack* stack)
+void initStack(struct Stack* stack) 
 {
     stack->top = NULL;
     stack->minLen = INT_MAX;
@@ -42,7 +42,7 @@ void initQueue(struct Queue* queue)
     initStack(queue->outStack);
 }
 
-void push(struct Stack* stack, int value, int length)
+void push(struct Stack* stack, int value, int length) 
 {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->data = value;
@@ -62,7 +62,8 @@ void push(struct Stack* stack, int value, int length)
 
 struct Node* pop(struct Stack* stack)
 {
-    if (stack->top == NULL) {
+    if (stack->top == NULL)
+    {
         return NULL;
     }
 
@@ -81,7 +82,7 @@ void enqueue(struct Queue* queue, int length)
 
 struct Node* dequeue(struct Queue* queue)
 {
-    if (queue->outStack->top == NULL)
+    if (queue->outStack->top == NULL) 
     {
         while (queue->inStack->top != NULL)
         {
@@ -112,33 +113,78 @@ void computeAverage(struct Queue* queue)
     }
     else
     {
-        printf("Error: Queue is empty\n");
+        printf("Error: Cannot Compute. Queue is empty\n");
     }
 }
 
 void printMinLength(struct Queue* queue)
 {
+    int minLen = INT_MAX;
+
+    struct Node* current = queue->inStack->top;
+    while (current != NULL)
+    {
+        if (current->length < minLen)
+        {
+            minLen = current->length;
+        }
+        current = current->next;
+    }
+
+    current = queue->outStack->top;
+    while (current != NULL)
+    {
+        if (current->length < minLen)
+        {
+            minLen = current->length;
+        }
+        current = current->next;
+    }
+
     if (queue->numMessages > 0)
     {
-        printf("Minimum message length: %d\n", queue->outStack->minLen);
+        printf("Minimum length: %d\n", minLen);
     }
     else
     {
-        printf("Error: Queue is empty\n");
+        printf("Error: Cannot Compute. Queue is empty\n");
     }
 }
 
 void printMaxLength(struct Queue* queue)
 {
+    int maxLen = INT_MIN;
+
+    struct Node* current = queue->inStack->top;
+    while (current != NULL)
+    {
+        if (current->length > maxLen)
+        {
+            maxLen = current->length;
+        }
+        current = current->next;
+    }
+
+    current = queue->outStack->top;
+    while (current != NULL)
+    {
+        if (current->length > maxLen)
+        {
+            maxLen = current->length;
+        }
+        current = current->next;
+    }
+
     if (queue->numMessages > 0)
     {
-        printf("Maximum message length: %d\n", queue->outStack->maxLen);
+        printf("Maximum length: %d\n", maxLen);
     }
     else
     {
-        printf("Error: Queue is empty\n");
+        printf("Error: Cannot Compute. Queue is empty\n");
     }
 }
+
 int main(int argc, char *argv[])
 {
     if (argc != 2)
@@ -163,51 +209,51 @@ int main(int argc, char *argv[])
     {
         switch (command)
         {
-            case 0:
-                printf("Exiting program\n");
-                fclose(file);
-                return 0;
+        case 0:
+            printf("Exiting program\n");
+            fclose(file);
+            return 0;
 
-            case 1:
-                if (fscanf(file, "%d", &value) == 1)
-                {
-                    enqueue(&myQueue, value);
-                    printf("%d has been enqueued\n", value);
-                }
-                else
-                {
-                    printf("Invalid command format\n");
-                }
-                break;
+        case 1:
+            if (fscanf(file, "%d", &value) == 1)
+            {
+                enqueue(&myQueue, value);
+                printf("%d has been enqueued\n", value);
+            }
+            else
+            {
+                printf("Invalid command format\n");
+            }
+            break;
 
-            case 2:
-                {
-                    struct Node* node = dequeue(&myQueue);
-                    if (node != NULL)
-                    {
-                        printf("Dequeued length: %d\n", node->length);
-                        free(node);
-                    }
-                    else
-                    {
-                        printf("Error: Queue is empty\n");
-                    }
-                }
-                break;
+        case 2:
+        {
+            struct Node* node = dequeue(&myQueue);
+            if (node != NULL)
+            {
+                printf("Dequeued length: %d\n", node->length);
+                free(node);
+            }
+            else
+            {
+                printf("Error: Queue is empty\n");
+            }
+        }
+        break;
 
-            case 3:
-                computeAverage(&myQueue);
-                break;
+        case 3:
+            computeAverage(&myQueue);
+            break;
 
-            case 4:
-                printMinLength(&myQueue);
-                break;
+        case 4:
+            printMinLength(&myQueue);
+            break;
 
-            case 5:
-                printMaxLength(&myQueue);
-                break;
+        case 5:
+            printMaxLength(&myQueue);
+            break;
 
-            default:
+        default:
                 printf("Invalid command\n");
         }
     }
