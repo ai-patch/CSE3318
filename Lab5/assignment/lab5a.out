@@ -1,0 +1,32 @@
+Double hash table size is 13
+Names in order of first appearance:
+0 source
+1 dfw
+2 waco
+3 lubbock
+4 sink
+5 kemah
+Double hash table used while processing input:
+0 5 (kemah) 0 3:  0
+1 4 (sink) 9 6:  9 2 8 1
+2 3 (lubbock) 8 7:  8 2
+3 -1
+4 -1
+5 -1
+6 -1
+7 -1
+8 1 (dfw) 11 10:  11 8
+9 2 (waco) 9 7:  9
+10 -1
+11 0 (source) 11 10:  11
+12 -1
+Total probes: 11
+SCC 1
+source
+SCC 2
+dfw
+kemah
+waco
+lubbock
+SCC 3
+sink

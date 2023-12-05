@@ -1,0 +1,31 @@
+Double hash table size is 13
+Names in order of first appearance:
+0 alpha
+1 beta
+2 gamma
+3 delta
+4 epsilon
+5 zeta
+Double hash table used while processing input:
+0 2 (gamma) 1 12:  1 0
+1 0 (alpha) 1 3:  1
+2 -1
+3 5 (zeta) 3 5:  3
+4 4 (epsilon) 4 7:  4
+5 -1
+6 1 (beta) 1 5:  1 6
+7 -1
+8 -1
+9 -1
+10 3 (delta) 10 7:  10
+11 -1
+12 -1
+Total probes: 8
+SCC 1
+delta
+zeta
+epsilon
+SCC 2
+alpha
+gamma
+beta
